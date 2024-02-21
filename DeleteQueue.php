@@ -16,13 +16,27 @@ $stml->bindParam(':QDate', $_GET["QDate"]);
     
 if($stml->execute()) :
     
-        $message = "Successfully delete customer".$_GET['QNumber,QDate'].".";
+        $message = "Successfully delete Queue".$_GET['QNumber,QDate'].".";
+        echo '
+        <script type="text/javascript">        
+        $(document).ready(function(){
+    
+            swal({
+                title: "Success!",
+                text: "Successfuly Delete Queue",
+                type: "success",
+                timer: 2500,
+                showConfirmButton: false
+            }, function(){
+                    window.location.href = "index.php";
+            });
+        });                    
+        </script>';
 
 else :
-    $message = "Fail to delete customer information.";
+    $message = "Fail to delete Queue information.";
 endif;
 $conn = null;
 
-header("Location:index.php");
 
 ?>
