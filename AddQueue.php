@@ -18,7 +18,7 @@
         transform: scale(1.5);
     }
     </style>
-
+    <title>AddQueue</title>
 
 </head>
 
@@ -49,7 +49,7 @@
                     
                             swal({
                                 title: "Success!",
-                                text: "Successfuly add customer",
+                                text: "Successfuly add Queue",
                                 type: "success",
                                 timer: 2500,
                                 showConfirmButton: false

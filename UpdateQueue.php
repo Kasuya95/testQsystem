@@ -39,7 +39,7 @@ if(isset($_POST['submit'])) {
         
             swal({
                 title: "Success!",
-                text: "Successfuly update customer information",
+                text: "Successfuly update Queue",
                 type: "success",
                 timer: 2500,
                 showConfirmButton: false
