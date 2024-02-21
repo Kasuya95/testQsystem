@@ -1,20 +1,29 @@
 <?php
 
-if (isset($_POST['submit'])) {
+if(isset($_POST['submit'])) {
     require 'conn.php';
 
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $QDate = $_POST['QDate'] ;
-    $QNumber = $_POST['QNumber'] ;
-    $Pid = $_POST['Pid'] ;
-    $Qstatus = $_POST['Qstatus'] ;
 
-    $stmt = $conn->prepare(
-        'UPDATE queue set Qstatus = :QStatus where QDate = :QDate'
-    );
-    $stmt->bindParam(':QDate', $QDate);
-    $stmt->bindParam(':QStatus', $Qstatus);
+
+    $QDate = $_POST['QDate'];
+    $QNumber = $_POST['QNumber'];
+    $Pid =  $_POST['Pid'];
+    $Qstatus =  $_POST['Qstatus'];
+
+    echo 'QDate = ' . $QDate;
+    echo 'QNumber = ' . $QNumber;
+    echo 'Pid = ' . $Pid;
+    echo 'Qstatus = ' . $Qstatus;
+
+
+    $sql = "UPDATE queue SET QDate = :QDate, QNumber = :QNumber, Pid = :Pid, Qstatus = :Qstatus WHERE QDate = :QDate and QNumber = :QNumber";
+    $stmt = $conn->prepare($sql);
+    
+    $stmt->bindParam(':QDate', $_POST['QDate']);
+    $stmt->bindParam(':QNumber', $_POST['QNumber']);
+    $stmt->bindParam(':Pid', $_POST['Pid']);
+    $stmt->bindParam(':Qstatus', $_POST['Qstatus']);
 
 
     echo '
@@ -22,7 +31,7 @@ if (isset($_POST['submit'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">';
 
-    if ($stmt->execute() ) {
+    if ($stmt->execute()) {
         echo '
         <script type="text/javascript">
         
